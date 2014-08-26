@@ -1,0 +1,56 @@
+.table-striped>tbody>tr:nth-child(odd).owned>td {
+	background-color: #ff9;
+}
+
+.table-striped>tbody>tr:nth-child(even).owned>td {
+	background-color: #ffc;
+}
+
+.table-striped>tbody>tr.highlight>td {
+	font-weight: bold;
+}
+
+tbody:before {
+	/* allows the top hover border on the first row */
+	line-height: 1em;
+	content: " ";
+	display: block;
+}
+
+.table-striped>tbody>tr:hover>td {
+	border-top: solid red 1px;
+	border-bottom: solid red 1px;
+}
+
+.owned-marker, .glyphicon.unowned {
+	color: #ccc;
+}
+
+.owned .owned-marker {
+	color: #000;
+}
+
+.red {
+	color: #F00;
+}
+.green {
+	color: #0F0;
+}
+
+.off .glyphicon {
+	color: #6AF;
+}
+
+th.toggle {
+	white-space: nowrap;	
+}
+
+table tr td.button {
+    text-align: right;
+    width: 1px;
+}
+
+.selected {
+	border: dotted black 1px;
+}
+
