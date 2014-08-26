@@ -21,11 +21,11 @@ public class HighwayLink
     @Column(name = "TOTAL_FLOW")
     private BigDecimal        flow;
 
-    @Column(name = "LENGTH_MILE")
-    private float             length;
+    @Column(name = "LENGTH_MILE", columnDefinition = "float")
+    private double            length;
 
     @Column(name = "VMT")
-    private float             vmt;
+    private double            vmt;
 
     @Column(name = "VHT", columnDefinition = "decimal", precision = 31, scale = 18)
     private BigDecimal        vht;
@@ -51,22 +51,22 @@ public class HighwayLink
     @Formula("FLOW_TRANSIT * LENGTH_MILE")
     private Double            transitVmt;
 
-    @Formula("(FLOW_SOV_GP + FLOW_SOV_PAY) * ([TIME] / 60)")
+    @Formula("(FLOW_SOV_GP + FLOW_SOV_PAY) * (TIME / 60)")
     private Double            driveAloneVht;
 
-    @Formula("(FLOW_SR2_GP + FLOW_SR2_HOV + FLOW_SR2_PAY + FLOW_SR3_GP + FLOW_SR3_HOV + FLOW_SR3_PAY) * ([TIME] / 60)")
+    @Formula("(FLOW_SR2_GP + FLOW_SR2_HOV + FLOW_SR2_PAY + FLOW_SR3_GP + FLOW_SR3_HOV + FLOW_SR3_PAY) * (TIME / 60)")
     private Double            carpoolVht;
 
-    @Formula("(FLOW_LHDN + FLOW_LHDT) * ([TIME] / 60)")
+    @Formula("(FLOW_LHDN + FLOW_LHDT) * (TIME / 60)")
     private Double            lhdtVht;
 
-    @Formula("(FLOW_MHDN + FLOW_MHDT) * ([TIME] / 60)")
+    @Formula("(FLOW_MHDN + FLOW_MHDT) * (TIME / 60)")
     private Double            mhdtVht;
 
-    @Formula("(FLOW_HHDN + FLOW_HHDT) * ([TIME] / 60)")
+    @Formula("(FLOW_HHDN + FLOW_HHDT) * (TIME / 60)")
     private Double            hhdtVht;
 
-    @Formula("FLOW_TRANSIT * ([TIME] / 60)")
+    @Formula("FLOW_TRANSIT * (TIME / 60)")
     private Double            transitVht;
 
     public HighwayLinkId getId()
@@ -89,22 +89,22 @@ public class HighwayLink
         this.flow = flow;
     }
 
-    public float getLength()
+    public double getLength()
     {
         return length;
     }
 
-    public void setLength(float length)
+    public void setLength(double length)
     {
         this.length = length;
     }
 
-    public float getVmt()
+    public double getVmt()
     {
         return vmt;
     }
 
-    public void setVmt(float vmt)
+    public void setVmt(double vmt)
     {
         this.vmt = vmt;
     }

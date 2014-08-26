@@ -17,23 +17,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ScenarioHighwayController
 {
     @Autowired
-    protected ScenarioDao scenarioDao;
-    
+    protected ScenarioDao    scenarioDao;
+
     @Autowired
     protected HighwayLinkDao hwyLinkDao;
-    
-    @RequestMapping(value="/{scenarioId}/highway",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/{scenarioId}/highway", method = RequestMethod.GET)
     public String display(@PathVariable Short scenarioId, Model model)
     {
         model.addAttribute("activeMenuItem", "highwayMenuItem");
-        
+
         Scenario scenario = scenarioDao.read(scenarioId);
         model.addAttribute("scenario", scenario);
-        
-        HashMap<String, VmtFacilityProfile> ifcVmtProfiles = hwyLinkDao.getVmtProfilesByIFC(scenarioId);
+
+        HashMap<String, VmtFacilityProfile> ifcVmtProfiles = hwyLinkDao
+                .getVmtProfilesByIFC(scenarioId);
         model.addAttribute("ifcVmtProfiles", ifcVmtProfiles);
-        
+
         return "highway";
     }
-    
+
 }

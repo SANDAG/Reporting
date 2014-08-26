@@ -6,25 +6,26 @@ import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 
 @Embeddable
-public class SimulatedTripId implements Serializable
+public class SimulatedTripId
+        implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     @NotNull
     @Column(name = "SCENARIO_ID")
-    private Short   scenarioId;
+    private Short             scenarioId;
 
     @NotNull
     @Column(name = "MODEL_TYPE_ID")
-    private Byte    modelType;
+    private Byte              modelType;
 
     @NotNull
     @Column(name = "TOUR_ID")
-    private Integer tourId;
+    private Integer           tourId;
 
     @NotNull
     @Column(name = "TRIP_ID")
-    private Integer tripId;
+    private Integer           tripId;
 
     public SimulatedTripId(Short aScenarioId, Byte aModelType, Integer aTourId, Integer aTripId)
     {

@@ -90,6 +90,6 @@ public class VmtFacilityProfileTest
                 + vmtRuralCollector + vmtLocal + vmtConnectorRamp + vmtRamp + vmtAccess)
                 / (vhtFreeway + vhtPrime + vhtMajor + vhtCollector + vhtLocalCollector
                         + vhtRuralCollector + vhtLocal + vhtConnectorRamp + vhtRamp + vhtAccess),
-                vmtProfile.getTotalSpeed(),0.0001);
+                vmtProfile.getTotalSpeed(), 0.0001);
     }
 }

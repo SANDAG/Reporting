@@ -20,7 +20,7 @@ public class ScenariosController
     public String display(Model model)
     {
         model.addAttribute("activeMenuItem", "scenariosMenuItem");
-        
+
         List<Scenario> scenarios = scenarioDao.readAll();
         model.addAttribute("scenarios", scenarios);
         return "scenarios";

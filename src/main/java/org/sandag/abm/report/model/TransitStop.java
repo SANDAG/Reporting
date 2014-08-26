@@ -8,19 +8,20 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TRANSIT_ONOFF")
-public class TransitStop implements Serializable
+@Table(name = "TRANSIT_ONOFF")
+public class TransitStop
+        implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     @EmbeddedId
-    private TransitStopId id;
-    
-    @Column(name="BOARDINGS", columnDefinition="decimal", precision=11, scale=6)
-    private BigDecimal boardings;
-    
-    @Column(name="ALIGHTINGS", columnDefinition="decimal", precision=11, scale=6)
-    private BigDecimal alightings;
+    private TransitStopId     id;
+
+    @Column(name = "BOARDINGS", columnDefinition = "decimal", precision = 11, scale = 6)
+    private BigDecimal        boardings;
+
+    @Column(name = "ALIGHTINGS", columnDefinition = "decimal", precision = 11, scale = 6)
+    private BigDecimal        alightings;
 
     public TransitStopId getId()
     {
