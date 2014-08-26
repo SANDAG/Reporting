@@ -23,19 +23,19 @@ public class SimulatedTripsDaoTest
     {
         ModeShare modeShare = simulatedTripDao.getResidentModeShare(new Short((short)238));
         
-        assertEquals(4792705,modeShare.getDriveAloneTrips(),1);
-        assertEquals(5223979,modeShare.getCarpoolTrips(),1);
-        assertEquals(1064907,modeShare.getWalkTrips(),1);
-        assertEquals(429037,modeShare.getBikeTrips(),1);
-        assertEquals(266715,modeShare.getTransitTrips(),1);
-        assertEquals(118560,modeShare.getOtherTrips(),1);
+        assertEquals(3,modeShare.getDriveAloneTrips(),1);
+        assertEquals(9,modeShare.getCarpoolTrips(),1);
+        assertEquals(7,modeShare.getWalkTrips(),1);
+        assertEquals(6,modeShare.getBikeTrips(),1);
+        assertEquals(5,modeShare.getTransitTrips(),1);
+        assertEquals(4,modeShare.getOtherTrips(),1);
         
-        assertEquals(0.402887028,modeShare.getDriveAloneModeShare(),0.0001);
-        assertEquals(0.439141022,modeShare.getCarpoolModeShare(),0.0001);
-        assertEquals(0.089518803,modeShare.getWalkModeShare(),0.0001);
-        assertEquals(0.036065946,modeShare.getBikeModeShare(),0.0001);
-        assertEquals(0.022420744,modeShare.getTransitModeShare(),0.0001);
-        assertEquals(0.009966457,modeShare.getOtherModeShare(),0.0001);   
+        assertEquals(0.088235294,modeShare.getDriveAloneModeShare(),0.0001);
+        assertEquals(0.264705882,modeShare.getCarpoolModeShare(),0.0001);
+        assertEquals(0.205882352,modeShare.getWalkModeShare(),0.0001);
+        assertEquals(0.176470588,modeShare.getBikeModeShare(),0.0001);
+        assertEquals(0.147058823,modeShare.getTransitModeShare(),0.0001);
+        assertEquals(0.117647058,modeShare.getOtherModeShare(),0.0001);   
     }
 
 }
