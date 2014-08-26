@@ -42,7 +42,7 @@ public class ScenarioDaoTest
     {
         List<Scenario> scenarios = scenarioDao.readAll();
         assertNotNull(scenarios);
-        assertEquals(36, scenarios.size());
+        assertEquals(2, scenarios.size());
 
         Scenario scenario = scenarios.get(1);
         assertNotNull(scenario);

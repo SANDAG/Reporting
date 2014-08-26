@@ -21,11 +21,11 @@ public class HighwayLink
     @Column(name = "TOTAL_FLOW")
     private BigDecimal        flow;
 
-    @Column(name = "LENGTH_MILE")
-    private float             length;
+    @Column(name = "LENGTH_MILE", columnDefinition="float")
+    private double             length;
 
     @Column(name = "VMT")
-    private float             vmt;
+    private double             vmt;
 
     @Column(name = "VHT", columnDefinition = "decimal", precision = 31, scale = 18)
     private BigDecimal        vht;
@@ -89,22 +89,22 @@ public class HighwayLink
         this.flow = flow;
     }
 
-    public float getLength()
+    public double getLength()
     {
         return length;
     }
 
-    public void setLength(float length)
+    public void setLength(double length)
     {
         this.length = length;
     }
 
-    public float getVmt()
+    public double getVmt()
     {
         return vmt;
     }
 
-    public void setVmt(float vmt)
+    public void setVmt(double vmt)
     {
         this.vmt = vmt;
     }
