@@ -6,33 +6,34 @@ import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 
 @Embeddable
-public class TransitStopId implements Serializable
+public class TransitStopId
+        implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     @NotNull
-    @Column(name= "SCENARIO_ID")
-    private Short scenarioId;
-    
+    @Column(name = "SCENARIO_ID")
+    private Short             scenarioId;
+
     @NotNull
-    @Column(name= "ROUTE_ID")
-    private Short routeId;
-    
+    @Column(name = "ROUTE_ID")
+    private Short             routeId;
+
     @NotNull
-    @Column(name= "MAIN_MODE_ID")
-    private Byte mainModeId;
-    
+    @Column(name = "MAIN_MODE_ID")
+    private Byte              mainModeId;
+
     @NotNull
-    @Column(name= "ACCESS_MODE_ID")
-    private Byte accessModeId;
-    
+    @Column(name = "ACCESS_MODE_ID")
+    private Byte              accessModeId;
+
     @NotNull
-    @Column(name= "TOD_ID")
-    private Byte timeOfDay;
-    
+    @Column(name = "TOD_ID")
+    private Byte              timeOfDay;
+
     @NotNull
-    @Column(name= "STOP_ID")
-    private Short stopId;
+    @Column(name = "STOP_ID")
+    private Short             stopId;
 
     public TransitStopId(Short scenarioId, Short routeId, Byte mainModeId, Byte accessModeId,
             Byte timeOfDay, Short stopId)

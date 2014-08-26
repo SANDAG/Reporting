@@ -21,11 +21,11 @@ public class HighwayLink
     @Column(name = "TOTAL_FLOW")
     private BigDecimal        flow;
 
-    @Column(name = "LENGTH_MILE", columnDefinition="float")
-    private double             length;
+    @Column(name = "LENGTH_MILE", columnDefinition = "float")
+    private double            length;
 
     @Column(name = "VMT")
-    private double             vmt;
+    private double            vmt;
 
     @Column(name = "VHT", columnDefinition = "decimal", precision = 31, scale = 18)
     private BigDecimal        vht;

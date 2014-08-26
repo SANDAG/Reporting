@@ -48,10 +48,9 @@ public abstract class BaseDao<T, PK extends Serializable>
         {
             return read((PK) Short.valueOf(id));
         }
-        
+
         throw new NotYetImplementedException(String.format(
                 "Primary keys of type '%s' are not supported for conversion", pkType.getName()));
-        
-        
+
     }
 }

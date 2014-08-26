@@ -7,13 +7,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ScenarioDao
-        extends BaseDao <Scenario, Short>
+        extends BaseDao<Scenario, Short>
 {
     public ScenarioDao()
     {
         super(Scenario.class, Short.class);
     }
-    
+
     @SuppressWarnings("unchecked")
     public List<Scenario> readAll()
     {

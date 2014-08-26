@@ -54,12 +54,12 @@ public class ScenarioDaoTest
         assertTrue(scenario.getYear() > 0);
         assertNotNull(scenario.getLoaded());
     }
-    
+
     @Test
     public void testConvert()
     {
         Scenario scenario = scenarioDao.convert("249");
-        
+
         assertEquals(249, scenario.getId().shortValue());
         assertEquals(2012, scenario.getYear().shortValue());
         assertEquals("2012_aztec", scenario.getDescription());

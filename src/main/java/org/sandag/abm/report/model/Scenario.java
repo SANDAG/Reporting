@@ -17,7 +17,7 @@ public class Scenario
     private Short   id;
 
     @Column(name = "SCENARIO_YEAR")
-    private Short year;
+    private Short   year;
 
     @Column(name = "SCENARIO_DESC")
     private String  description;

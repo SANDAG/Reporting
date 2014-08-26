@@ -40,7 +40,7 @@ public class ModeShareTest
 
         assertEquals(firstAddition + secondAddition + altModeAddition - firstSubstraction,
                 modeShare.getTotalTrips());
-        
+
         modeShare.subtractDriveAloneTrips(bigSubtraction);
         assertEquals(0, modeShare.getDriveAloneTrips());
     }
@@ -72,7 +72,7 @@ public class ModeShareTest
 
         assertEquals(firstAddition + secondAddition + altModeAddition - firstSubstraction,
                 modeShare.getTotalTrips());
-        
+
         modeShare.subtractCarpoolTrips(bigSubtraction);
         assertEquals(0, modeShare.getCarpoolTrips());
     }
@@ -94,17 +94,16 @@ public class ModeShareTest
         assertEquals(firstAddition + secondAddition + altModeAddition, modeShare.getTotalTrips());
 
         assertEquals((double) (firstAddition + secondAddition)
-                / (firstAddition + secondAddition + altModeAddition),
-                modeShare.getWalkModeShare(), 0.000001);
+                / (firstAddition + secondAddition + altModeAddition), modeShare.getWalkModeShare(),
+                0.000001);
 
         modeShare.subtractWalkTrips(firstSubstraction);
 
-        assertEquals((firstAddition + secondAddition - firstSubstraction),
-                modeShare.getWalkTrips());
+        assertEquals((firstAddition + secondAddition - firstSubstraction), modeShare.getWalkTrips());
 
         assertEquals(firstAddition + secondAddition + altModeAddition - firstSubstraction,
                 modeShare.getTotalTrips());
-        
+
         modeShare.subtractWalkTrips(bigSubtraction);
         assertEquals(0, modeShare.getWalkTrips());
     }
@@ -126,17 +125,16 @@ public class ModeShareTest
         assertEquals(firstAddition + secondAddition + altModeAddition, modeShare.getTotalTrips());
 
         assertEquals((double) (firstAddition + secondAddition)
-                / (firstAddition + secondAddition + altModeAddition),
-                modeShare.getBikeModeShare(), 0.000001);
+                / (firstAddition + secondAddition + altModeAddition), modeShare.getBikeModeShare(),
+                0.000001);
 
         modeShare.subtractBikeTrips(firstSubstraction);
 
-        assertEquals((firstAddition + secondAddition - firstSubstraction),
-                modeShare.getBikeTrips());
+        assertEquals((firstAddition + secondAddition - firstSubstraction), modeShare.getBikeTrips());
 
         assertEquals(firstAddition + secondAddition + altModeAddition - firstSubstraction,
                 modeShare.getTotalTrips());
-        
+
         modeShare.subtractBikeTrips(bigSubtraction);
         assertEquals(0, modeShare.getBikeTrips());
     }
@@ -168,7 +166,7 @@ public class ModeShareTest
 
         assertEquals(firstAddition + secondAddition + altModeAddition - firstSubstraction,
                 modeShare.getTotalTrips());
-        
+
         modeShare.subtractTransitTrips(bigSubtraction);
         assertEquals(0, modeShare.getTransitTrips());
     }
@@ -200,7 +198,7 @@ public class ModeShareTest
 
         assertEquals(firstAddition + secondAddition + altModeAddition - firstSubstraction,
                 modeShare.getTotalTrips());
-        
+
         modeShare.subtractOtherTrips(bigSubtraction);
         assertEquals(0, modeShare.getOtherTrips());
     }
