@@ -2,6 +2,7 @@ CREATE SCHEMA IF NOT EXISTS abm AUTHORIZATION SA;
 
 DROP TABLE IF EXISTS abm.SCENARIO;
 DROP TABLE IF EXISTS abm.TRANSIT_ONOFF;
+DROP TABLE IF EXISTS abm.TRANSIT_ROUTE;
 DROP TABLE IF EXISTS abm.TRIP_MICRO_SIMUL;
 DROP VIEW IF EXISTS ABM.VI_HWYCOV;
 DROP TABLE IF EXISTS abm.HWY_LOAD;
@@ -20,15 +21,34 @@ CREATE TABLE IF NOT EXISTS abm.SCENARIO(
 
 CREATE TABLE IF NOT EXISTS abm.TRANSIT_ONOFF(
     SCENARIO_ID smallint,
-    ROUTE_ID smallint,
     MAIN_MODE_ID tinyint,
     ACCESS_MODE_ID tinyint,
     TOD_ID tinyint,
     STOP_ID smallint,
+    ROUTE_ID smallint,
     BOARDINGS decimal(11,6),
     ALIGHTINGS decimal(11,6),
+    WALKACCESSON decimal(11, 6),
+    DIRECTTRANSFERON decimal(11, 6),
+    WALKTRANSFERON decimal(11, 6),
+    DIRECTTRANSFEROFF decimal(11, 6),
+    WALKTRANSFEROFF decimal(11, 6),
+    EGRESSOFF decimal(11, 6),
     PRIMARY KEY (SCENARIO_ID, ROUTE_ID, MAIN_MODE_ID, ACCESS_MODE_ID, TOD_ID, STOP_ID)
-);
+) AS SELECT * FROM CSVREAD('classpath:sql/transit_stop_sample_data.csv');;
+
+CREATE TABLE IF NOT EXISTS abm.TRANSIT_ROUTE(
+    SCENARIO_ID smallint,
+    ROUTE_ID smallint,
+    ROUTE_NAME varchar(50),
+    TRANSIT_MODE_ID tinyint,
+    AM_HEADWAY decimal(5, 2),
+    PM_HEADWAY decimal(5, 2),
+    OP_HEADWAY decimal(5, 2),
+    CONFIG int,
+    FARE decimal(4, 2),
+    PRIMARY KEY (SCENARIO_ID, ROUTE_ID)
+) AS SELECT * FROM CSVREAD('classpath:sql/transit_route_sample_data.csv');
 
 CREATE TABLE IF NOT EXISTS abm.TRIP_MICRO_SIMUL(
     SCENARIO_ID smallint,

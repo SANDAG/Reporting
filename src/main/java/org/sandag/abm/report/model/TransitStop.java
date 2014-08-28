@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +25,10 @@ public class TransitStop
 
     @Column(name = "ALIGHTINGS", columnDefinition = "decimal", precision = 11, scale = 6)
     private BigDecimal        alightings;
+    
+    @ManyToOne
+    @JoinColumns(value={@JoinColumn(name="ROUTE_ID", insertable=false, updatable=false),@JoinColumn(name="SCENARIO_ID", insertable=false, updatable=false)})
+    private TransitRoute transitRoute;
 
     public TransitStopId getId()
     {
@@ -51,5 +58,15 @@ public class TransitStop
     public void setAlightings(BigDecimal alightings)
     {
         this.alightings = alightings;
+    }
+    
+    public TransitRoute getTransitRoute()
+    {
+        return this.transitRoute;
+    }
+    
+    public void setTransitRoute(TransitRoute aTransitRoute)
+    {
+        this.transitRoute = aTransitRoute;
     }
 }
