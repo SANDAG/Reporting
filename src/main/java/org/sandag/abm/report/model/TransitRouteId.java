@@ -21,9 +21,9 @@ public class TransitRouteId
 
     public TransitRouteId()
     {
-        
+
     }
-    
+
     public TransitRouteId(Short aScenarioId, Short aRouteId)
     {
         this.scenarioId = aScenarioId;

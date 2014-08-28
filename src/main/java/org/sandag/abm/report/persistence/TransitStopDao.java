@@ -1,6 +1,5 @@
 package org.sandag.abm.report.persistence;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

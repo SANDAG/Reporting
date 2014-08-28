@@ -2,13 +2,12 @@ package org.sandag.abm.report.statistics;
 
 public class RouteSummary
 {
-    private int  routeNumber;
+    private int    routeNumber;
     private byte   modeId;
     private double boardings;
     private double alightings;
 
-    public RouteSummary(int aRouteNumber, byte aModeId, double theBoardings,
-            double theAlightings)
+    public RouteSummary(int aRouteNumber, byte aModeId, double theBoardings, double theAlightings)
     {
         this.routeNumber = aRouteNumber;
         this.modeId = aModeId;

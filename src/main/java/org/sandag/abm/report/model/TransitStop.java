@@ -20,14 +20,15 @@ public class TransitStop
     private TransitStopId     id;
 
     @Column(name = "BOARDINGS", columnDefinition = "decimal", precision = 11, scale = 6)
-    private double        boardings;
+    private double            boardings;
 
     @Column(name = "ALIGHTINGS", columnDefinition = "decimal", precision = 11, scale = 6)
-    private double        alightings;
-    
+    private double            alightings;
+
     @ManyToOne
-    @JoinColumns(value={@JoinColumn(name="ROUTE_ID", insertable=false, updatable=false),@JoinColumn(name="SCENARIO_ID", insertable=false, updatable=false)})
-    private TransitRoute transitRoute;
+    @JoinColumns(value = {@JoinColumn(name = "ROUTE_ID", insertable = false, updatable = false),
+            @JoinColumn(name = "SCENARIO_ID", insertable = false, updatable = false)})
+    private TransitRoute      transitRoute;
 
     public TransitStopId getId()
     {
@@ -58,12 +59,12 @@ public class TransitStop
     {
         this.alightings = alightings;
     }
-    
+
     public TransitRoute getTransitRoute()
     {
         return this.transitRoute;
     }
-    
+
     public void setTransitRoute(TransitRoute aTransitRoute)
     {
         this.transitRoute = aTransitRoute;
