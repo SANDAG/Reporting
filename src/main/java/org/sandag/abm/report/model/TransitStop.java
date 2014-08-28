@@ -1,7 +1,6 @@
 package org.sandag.abm.report.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -21,10 +20,10 @@ public class TransitStop
     private TransitStopId     id;
 
     @Column(name = "BOARDINGS", columnDefinition = "decimal", precision = 11, scale = 6)
-    private BigDecimal        boardings;
+    private double        boardings;
 
     @Column(name = "ALIGHTINGS", columnDefinition = "decimal", precision = 11, scale = 6)
-    private BigDecimal        alightings;
+    private double        alightings;
     
     @ManyToOne
     @JoinColumns(value={@JoinColumn(name="ROUTE_ID", insertable=false, updatable=false),@JoinColumn(name="SCENARIO_ID", insertable=false, updatable=false)})
@@ -40,22 +39,22 @@ public class TransitStop
         this.id = id;
     }
 
-    public BigDecimal getBoardings()
+    public double getBoardings()
     {
         return boardings;
     }
 
-    public void setBoardings(BigDecimal boardings)
+    public void setBoardings(double boardings)
     {
         this.boardings = boardings;
     }
 
-    public BigDecimal getAlightings()
+    public double getAlightings()
     {
         return alightings;
     }
 
-    public void setAlightings(BigDecimal alightings)
+    public void setAlightings(double alightings)
     {
         this.alightings = alightings;
     }

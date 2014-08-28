@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import org.hibernate.annotations.Formula;
 
 @Entity
 @Table(name = "TRANSIT_ROUTE")
@@ -33,6 +34,9 @@ public class TransitRoute
 
     @Column(name = "CONFIG")
     private int               config;
+
+    @Formula("CONFIG / 1000")
+    private int               routeNumber;
 
     @Column(name = "FARE", columnDefinition = "decimal", precision = 11, scale = 6)
     private double            fare;
@@ -115,5 +119,15 @@ public class TransitRoute
     public void setFare(double fare)
     {
         this.fare = fare;
+    }
+
+    public int getRouteNumber()
+    {
+        return routeNumber;
+    }
+
+    public void setRouteNumber(int routeNumber)
+    {
+        this.routeNumber = routeNumber;
     }
 }

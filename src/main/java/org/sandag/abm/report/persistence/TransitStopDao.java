@@ -1,13 +1,16 @@
 package org.sandag.abm.report.persistence;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.sandag.abm.report.model.TransitStop;
 import org.sandag.abm.report.model.TransitStopId;
+import org.sandag.abm.report.statistics.RouteSummary;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -36,7 +39,7 @@ public class TransitStopDao
         Criteria criteria = startQuery().add(Restrictions.eq("id.scenarioId", aScenarioId));
         criteria.setProjection(Projections.sum("boardings"));
 
-        return ((BigDecimal) criteria.list().get(0)).doubleValue();
+        return (Double) criteria.list().get(0);
     }
 
     public double getTotalAlightings(Short aScenarioId)
@@ -44,7 +47,35 @@ public class TransitStopDao
         Criteria criteria = startQuery().add(Restrictions.eq("id.scenarioId", aScenarioId));
         criteria.setProjection(Projections.sum("alightings"));
 
-        return ((BigDecimal) criteria.list().get(0)).doubleValue();
+        return (Double) criteria.list().get(0);
+    }
+
+    public List<RouteSummary> getRouteSummary(Short scenarioId)
+    {
+
+        Criteria criteria = getSession().createCriteria(TransitStop.class, "transitStop").add(
+                Restrictions.eq("id.scenarioId", scenarioId));
+
+        criteria.createAlias("transitStop.transitRoute", "transitRoute")
+                .setProjection(
+                        Projections.projectionList()
+                                .add(Projections.groupProperty("transitRoute.routeNumber"))
+                                .add(Projections.groupProperty("transitRoute.transitModeId"))
+                                .add(Projections.sum("boardings"))
+                                .add(Projections.sum("alightings")))
+                .addOrder(Property.forName("transitRoute.transitModeId").asc())
+                .addOrder(Property.forName("transitRoute.routeNumber").asc());
+
+        @SuppressWarnings("unchecked")
+        List<Object[]> results = criteria.list();
+
+        List<RouteSummary> routeSummaries = new ArrayList<RouteSummary>(results.size());
+
+        for (Object[] result : results)
+            routeSummaries.add(new RouteSummary((Integer) result[0], (Byte) result[1],
+                    (Double) result[2], (Double) result[3]));
+
+        return routeSummaries;
     }
 
     public HashMap<String, Double> getBoardingsByMainMode(Short scenarioId)
@@ -70,24 +101,19 @@ public class TransitStopDao
             switch (((Byte) record[1]).byteValue())
             {
                 case COMMUTER_RAIL:
-                    mainModeBoardings.put(COMMUTER_RAIL_KEY,
-                            new Double(((BigDecimal) record[0]).doubleValue()));
+                    mainModeBoardings.put(COMMUTER_RAIL_KEY, (Double) record[0]);
                     break;
                 case LIGHT_RAIL:
-                    mainModeBoardings.put(LIGHT_RAIL_KEY,
-                            new Double(((BigDecimal) record[0]).doubleValue()));
+                    mainModeBoardings.put(LIGHT_RAIL_KEY, (Double) record[0]);
                     break;
                 case REGIONAL_BRT:
-                    mainModeBoardings.put(REGIONAL_BRT_KEY,
-                            new Double(((BigDecimal) record[0]).doubleValue()));
+                    mainModeBoardings.put(REGIONAL_BRT_KEY, (Double) record[0]);
                     break;
                 case EXPRESS_BUS:
-                    mainModeBoardings.put(EXPRESS_BUS_KEY,
-                            new Double(((BigDecimal) record[0]).doubleValue()));
+                    mainModeBoardings.put(EXPRESS_BUS_KEY, (Double) record[0]);
                     break;
                 case LOCAL_BUS:
-                    mainModeBoardings.put(LOCAL_BUS_KEY,
-                            new Double(((BigDecimal) record[0]).doubleValue()));
+                    mainModeBoardings.put(LOCAL_BUS_KEY, (Double) record[0]);
                     break;
             }
         }

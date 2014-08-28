@@ -1,12 +1,15 @@
 package org.sandag.abm.report.persistence;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import java.util.HashMap;
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sandag.abm.report.model.TransitRoute;
 import org.sandag.abm.report.model.TransitStop;
 import org.sandag.abm.report.model.TransitStopId;
+import org.sandag.abm.report.statistics.RouteSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -27,22 +30,39 @@ public class TransitStopDaoTest
     @Test
     public void testManyToOneMappingTransitRoute()
     {
-        TransitStopId transitStopId = new TransitStopId(scenarioId, new Short((short)7), new Byte((byte)4),
-                new Byte((byte)1), new Byte((byte)2), new Short((short)93));
-        
+        TransitStopId transitStopId = new TransitStopId(scenarioId, new Short((short) 7), new Byte(
+                (byte) 4), new Byte((byte) 1), new Byte((byte) 2), new Short((short) 93));
+
         TransitStop transitStop = transitStopDao.read(transitStopId);
         assertNotNull(transitStop);
-        
+
         TransitRoute transitRoute = transitStop.getTransitRoute();
         assertNotNull(transitRoute);
-        
+
         assertEquals("510210", transitRoute.getRouteName());
-        assertEquals((byte)5, transitRoute.getTransitModeId());
-        assertEquals(12.0, transitRoute.getAmHeadway(),0.00001);
-        assertEquals(12.0, transitRoute.getPmHeadway(),0.00001);
-        assertEquals(15.0, transitRoute.getOpHeadway(),0.00001);
+        assertEquals((byte) 5, transitRoute.getTransitModeId());
+        assertEquals(12.0, transitRoute.getAmHeadway(), 0.00001);
+        assertEquals(12.0, transitRoute.getPmHeadway(), 0.00001);
+        assertEquals(15.0, transitRoute.getOpHeadway(), 0.00001);
         assertEquals(510210, transitRoute.getConfig());
-        assertEquals(2.5, transitRoute.getFare(),0.00001);
+        assertEquals(2.5, transitRoute.getFare(), 0.00001);
+    }
+
+    @Test
+    public void testGetRouteSummary()
+    {
+        List<RouteSummary> routeSummaries = transitStopDao.getRouteSummary(scenarioId);
+
+        assertNotNull(routeSummaries);
+
+        assertEquals(132, routeSummaries.size());
+        RouteSummary routeSummary = routeSummaries.get(128);
+
+        assertNotNull(routeSummary);
+        assertEquals(973, routeSummary.getRouteNumber());
+        assertEquals(10, routeSummary.getModeId());
+        assertEquals(97, routeSummary.getBoardings(), 1);
+        assertEquals(11878, routeSummaries.get(2).getAlightings(), 1);
     }
 
     @Test
