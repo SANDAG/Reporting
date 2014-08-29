@@ -78,7 +78,7 @@
           <ul class="nav nav-sidebar">
             <li id="overviewMenuItem" ><a href="<c:url value="/scenario/${scenario.id}" />">Overview</a></li>
             <li id="highwayMenuItem"><a href="<c:url value="/scenario/${scenario.id}/highway" />">Highway</a></li>
-            <li id="transitMenuItem"><a href="#">Transit</a></li>
+            <li id="transitMenuItem"><a href="<c:url value="/scenario/${scenario.id}/transit" />">Transit</a></li>
             <li id="activeItemItem"><a href="#">Active</a></li>
             <li id="networkItemItem"><a href="#">Network</a></li>
           </ul>
